@@ -3,7 +3,7 @@
  * 13. KONFIGURASI PERSONALISASI (EDIT BAGIAN INI DENGAN MUDAH)
  * ============================================================================
  * Seluruh data personal, nama, foto, keterangan scrapbook, timeline,
- * surat, serta file musik dapat diubah langsung di objek BIRTHDAY_CONFIG ini.
+ * surat, file musik lokal, serta link Spotify dapat diubah di BIRTHDAY_CONFIG.
  */
 const BIRTHDAY_CONFIG = {
   // Nama yang berulang tahun & pengirim
@@ -14,14 +14,19 @@ const BIRTHDAY_CONFIG = {
   // Subjudul Hero (akan ditampilkan dengan efek ketikan / typewriter)
   heroSubtitle: "hari ini, semesta merayakan dirimu.",
 
-  // Konfigurasi Audio / Playlist Romantis
+  // Konfigurasi Audio / Playlist Romantis + Embed Spotify Resmi
   audio: {
-    // Gunakan jalur relatif agar berfungsi di GitHub Pages (/birthday-web/)
+    // 1. Jalur relatif untuk file MP3 lokal (opsional)
     src: "audio/birthday-song.mp3",
     title: "Lover's Daydream (Birthday Edit)",
     artist: "Playlist Semesta Ulang Tahunmu ♡",
     // Jika file MP3 belum ditambahkan, aktifkan melodi kotak musik Web Audio otomatis
-    enableSynthFallback: true
+    enableSynthFallback: true,
+
+    // 2. Link Lagu / Playlist / Album Spotify Resmi
+    // Cukup tempel link Share Spotify biasa atau link Embed di sini.
+    // Contoh di bawah adalah link resmi lagu "Lover" — Taylor Swift di Spotify:
+    spotifyUrl: "https://open.spotify.com/track/1dGr1c8CrMLDpV6mPbImSI"
   },
 
   // 5. Birthday Investigation — Roasting Lucu
@@ -676,7 +681,7 @@ function initScrollAnimations() {
           }
 
           // Jika bagian penutup terlihat, picu perayaan confetti lembut
-          if (entry.target.closest("#finale-section") && ! finaleSection.dataset.celebrated) {
+          if (entry.target.closest("#finale-section") && !finaleSection.dataset.celebrated) {
             finaleSection.dataset.celebrated = "true";
             if (!AppState.reducedMotion) {
               triggerConfettiBurst(window.innerWidth / 2, window.innerHeight * 0.4, 40);
@@ -708,7 +713,7 @@ function initSurpriseInteractions() {
   const giftPanel = document.getElementById("gift-reveal-panel");
   const giftPrompt = document.getElementById("gift-prompt-text");
 
-  giftBtn?.addEventListener("click", (e) => {
+  giftBtn?.addEventListener("click", () => {
     const isOpened = giftBtn.classList.toggle("is-opened");
     giftBtn.setAttribute("aria-expanded", String(isOpened));
     if (giftPanel) giftPanel.hidden = !isOpened;
@@ -883,7 +888,7 @@ function resetAndReplayExperience() {
 
 /**
  * ============================================================================
- * 4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS (+ FALLBACK RAMAH)
+ * 4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS + LACI SPOTIFY RESMI
  * ============================================================================
  */
 function initMusicPlayer() {
@@ -892,23 +897,64 @@ function initMusicPlayer() {
   const minimizeBtn = document.getElementById("music-minimize-btn");
   const minimizeIcon = document.getElementById("music-minimize-icon");
   const playBtn = document.getElementById("music-play-btn");
-  const playIcon = document.getElementById("music-play-icon");
   const muteBtn = document.getElementById("music-mute-btn");
   const muteIcon = document.getElementById("music-mute-icon");
   const seekBar = document.getElementById("music-seek-bar");
   const currentTimeEl = document.getElementById("music-current-time");
   const durationEl = document.getElementById("music-duration");
-  const vinylDisc = document.getElementById("vinyl-disc");
-  const soundwave = document.getElementById("soundwave-indicator");
   const titleEl = document.getElementById("music-track-title");
   const artistEl = document.getElementById("music-track-artist");
   const fallbackNotice = document.getElementById("music-fallback-notice");
+
+  // Elemen Laci Spotify
+  const spotifyToggleWrapper = document.getElementById("spotify-toggle-wrapper");
+  const spotifyToggleBtn = document.getElementById("spotify-toggle-btn");
+  const spotifyToggleLabel = document.getElementById("spotify-toggle-label");
+  const spotifyDrawer = document.getElementById("spotify-embed-drawer");
+  const spotifyContainer = document.getElementById("spotify-iframe-container");
 
   if (!audio) return;
 
   if (titleEl) titleEl.textContent = BIRTHDAY_CONFIG.audio.title;
   if (artistEl) artistEl.textContent = BIRTHDAY_CONFIG.audio.artist;
   audio.src = BIRTHDAY_CONFIG.audio.src;
+
+  // Sembunyikan tombol Spotify jika spotifyUrl dikosongkan di konfigurasi
+  const embedUrl = convertToSpotifyEmbedUrl(BIRTHDAY_CONFIG.audio.spotifyUrl);
+  if (!embedUrl && spotifyToggleWrapper) {
+    spotifyToggleWrapper.style.display = "none";
+  }
+
+  // Toggle Laci Spotify + Lazy-Load Iframe + Jeda Otomatis Audio Lokal
+  spotifyToggleBtn?.addEventListener("click", () => {
+    if (!spotifyDrawer || !embedUrl) return;
+    const isOpening = spotifyDrawer.hidden;
+    spotifyDrawer.hidden = !isOpening;
+    spotifyToggleBtn.setAttribute("aria-expanded", String(isOpening));
+
+    if (spotifyToggleLabel) {
+      spotifyToggleLabel.textContent = isOpening
+        ? "tutup laci Spotify ▴"
+        : "buka playlist Spotify resmi ✨";
+    }
+
+    if (isOpening) {
+      // Muat iframe hanya saat pertama kali dibuka agar halaman tetap cepat
+      if (spotifyContainer && !spotifyContainer.querySelector("iframe")) {
+        const iframe = document.createElement("iframe");
+        iframe.src = embedUrl;
+        iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+        iframe.loading = "lazy";
+        iframe.title = "Pemutar Lagu Spotify Ulang Tahun";
+        spotifyContainer.appendChild(iframe);
+      }
+
+      // Jeda audio lokal / kotak musik agar tidak bertabrakan dengan Spotify
+      if (AppState.isAudioPlaying) {
+        toggleAudioPlayback(false);
+      }
+    }
+  });
 
   // Penanganan ramah jika file audio/birthday-song.mp3 belum ada
   audio.addEventListener("error", () => {
@@ -954,6 +1000,29 @@ function initMusicPlayer() {
       minimizeIcon.textContent = isMin ? "🎵 Musik" : "▾";
     }
   });
+}
+
+/**
+ * Mengubah link Share Spotify biasa (track, playlist, atau album)
+ * menjadi URL Embed resmi secara otomatis.
+ */
+function convertToSpotifyEmbedUrl(rawUrl) {
+  if (!rawUrl || typeof rawUrl !== "string") return "";
+  const trimmed = rawUrl.trim();
+  if (!trimmed) return "";
+
+  if (trimmed.includes("open.spotify.com/embed/")) {
+    return trimmed;
+  }
+
+  const match = trimmed.match(
+    /open\.spotify\.com\/(?:intl-[a-zA-Z-]+\/)?(track|playlist|album)\/([a-zA-Z0-9]+)/
+  );
+  if (match && match[1] && match[2]) {
+    return `https://open.spotify.com/embed/${match[1]}/${match[2]}?utm_source=generator`;
+  }
+
+  return "";
 }
 
 function startAudioPlaybackAfterInteraction() {

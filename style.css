@@ -71,7 +71,6 @@ body {
     radial-gradient(circle at 85% 20%, var(--bg-peach) 0%, transparent 38%),
     radial-gradient(circle at 50% 60%, var(--bg-blush) 0%, transparent 50%),
     linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-strawberry-milk) 50%, var(--bg-cream) 100%);
-  /* Tekstur Kertas Halus dengan Pola Titik Scrapbook */
   background-attachment: fixed;
   line-height: 1.65;
 }
@@ -1894,7 +1893,7 @@ button {
 }
 
 /* ==========================================================================
-   4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS
+   4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS + LACI SPOTIFY PASTEL
    ========================================================================== */
 .music-player-widget {
   position: fixed;
@@ -2091,6 +2090,95 @@ button {
   accent-color: var(--accent-pink);
   height: 4px;
   cursor: pointer;
+}
+
+/* Laci Spotify Embed Berbingkai Pastel */
+.spotify-drawer-toggle-row {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.spotify-pastel-btn {
+  width: 100%;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, #fff0f5 0%, #f3e8ff 100%);
+  border: 1.5px solid #ffbfd3;
+  color: var(--ink-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 3px 10px rgba(216, 49, 105, 0.08);
+  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.spotify-pastel-btn:hover,
+.spotify-pastel-btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-pink);
+  background: linear-gradient(135deg, #ffe3ec 0%, #ead6ff 100%);
+}
+
+.spotify-pastel-btn[aria-expanded="true"] {
+  background: var(--bg-blush);
+  color: var(--accent-deep-rose);
+  border-color: var(--accent-pink);
+}
+
+.spotify-embed-drawer {
+  margin-top: 10px;
+  animation: popReveal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.spotify-embed-drawer[hidden] {
+  display: none !important;
+}
+
+.spotify-pastel-frame {
+  background: linear-gradient(145deg, #fff7fa 0%, #f8f0ff 100%);
+  border: 2px dashed #ffacc5;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.9);
+}
+
+.spotify-frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-deep-rose);
+  padding: 2px 6px 6px;
+}
+
+.spotify-hint-badge {
+  background: #ffffff;
+  color: var(--ink-muted);
+  border: 1px solid #ffd6e4;
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  font-size: 0.65rem;
+}
+
+.spotify-iframe-container {
+  width: 100%;
+  height: 152px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffeef4;
+  border: 1px solid rgba(255, 172, 197, 0.5);
+}
+
+.spotify-iframe-container iframe {
+  width: 100%;
+  height: 152px;
+  border: 0;
+  display: block;
 }
 
 .music-fallback-notice {
@@ -2365,6 +2453,11 @@ button {
 @keyframes smokeRise {
   0% { opacity: 0.9; transform: translate(-50%, 0) scale(0.8); }
   100% { opacity: 0; transform: translate(-50%, -38px) scale(1.5); }
+}
+
+@keyframes wavePaw {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(18deg); }
 }
 
 /* ==========================================================================

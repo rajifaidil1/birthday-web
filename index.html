@@ -465,7 +465,7 @@
   </aside>
 
   <!-- =========================================================
-       4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS
+       4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS + LACI SPOTIFY
        ========================================================= -->
   <aside id="music-player-widget" class="music-player-widget" aria-label="Pemutar musik latar">
     <!-- Tombol Buka/Kecilkan Pemutar -->
@@ -479,8 +479,8 @@
         soundtrack untuk semesta ulang tahun kecilmu ♡
       </div>
 
+      <!-- Baris Pemutar Audio Lokal / Kotak Musik -->
       <div class="music-main-row">
-        <!-- Piringan Hitam / CD Berputar + Sampul Album Placeholder -->
         <div class="vinyl-disc-wrapper" id="vinyl-disc" aria-hidden="true">
           <div class="vinyl-grooves"></div>
           <div class="vinyl-cover-art">
@@ -491,7 +491,6 @@
         <div class="music-meta">
           <div class="music-title-row">
             <span id="music-track-title" class="music-track-title">Dreamy Birthday Serenade</span>
-            <!-- Gelombang Suara Animasi -->
             <div id="soundwave-indicator" class="soundwave-indicator" aria-hidden="true">
               <span></span><span></span><span></span><span></span>
             </div>
@@ -509,8 +508,8 @@
         </div>
       </div>
 
-      <!-- Bilah Progres Audio -->
-      <div class="music-progress-row">
+      <!-- Bilah Progres Audio Lokal -->
+      <div class="music-progress-row" id="local-progress-row">
         <span id="music-current-time" class="music-time">0:00</span>
         <input
           type="range"
@@ -525,10 +524,37 @@
         <span id="music-duration" class="music-time">0:00</span>
       </div>
 
-      <!-- Pesan Ramah Jika File Audio Belum Tersedia + Opsi Melodi Kotak Musik Bawaan -->
+      <!-- Tombol Pembuka Laci Spotify Resmi -->
+      <div class="spotify-drawer-toggle-row" id="spotify-toggle-wrapper">
+        <button
+          type="button"
+          id="spotify-toggle-btn"
+          class="spotify-pastel-btn"
+          aria-expanded="false"
+          aria-controls="spotify-embed-drawer"
+        >
+          <span aria-hidden="true">🎧</span>
+          <span id="spotify-toggle-label">buka playlist Spotify resmi ✨</span>
+        </button>
+      </div>
+
+      <!-- Laci Embed Spotify Berbingkai Pastel (Lazy-Loaded) -->
+      <div id="spotify-embed-drawer" class="spotify-embed-drawer" hidden>
+        <div class="spotify-pastel-frame">
+          <div class="spotify-frame-header">
+            <span>🎀 Spotify Mini Cassette</span>
+            <span class="spotify-hint-badge">Klik ▶ di dalam kartu</span>
+          </div>
+          <div id="spotify-iframe-container" class="spotify-iframe-container">
+            <!-- Iframe Spotify akan dimasukkan otomatis oleh script.js saat laci dibuka -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Pesan Ramah Jika File Audio Belum Tersedia -->
       <div id="music-fallback-notice" class="music-fallback-notice" hidden>
         <p id="music-fallback-text">
-          File lagu belum ditemukan di <code>audio/birthday-song.mp3</code>. Mode melodi kotak musik impian diaktifkan otomatis ♡
+          Mode melodi kotak musik aktif otomatis ♡ Kamu juga bisa membuka pemutar Spotify di atas!
         </p>
       </div>
     </div>

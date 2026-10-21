@@ -1,0 +1,460 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #ffeef5,
+        #ffd6e5
+    );
+
+    overflow-x: hidden;
+}
+
+
+/* =====================
+   CARD
+===================== */
+
+.birthday-card {
+    position: relative;
+
+    z-index: 10;
+
+    width: min(92%, 600px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =====================
+   OPENING
+===================== */
+
+.emoji {
+    font-size: 70px;
+
+    margin-bottom: 20px;
+
+    animation: bounce 1.5s infinite;
+}
+
+
+.big-emoji {
+    font-size: 80px;
+
+    margin-bottom: 10px;
+
+    animation: bounce 1s infinite;
+}
+
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+h1 {
+    font-size: 36px;
+
+    margin-bottom: 15px;
+}
+
+
+h2 {
+    margin-bottom: 15px;
+}
+
+
+p {
+    color: #666;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================
+   BUTTON
+===================== */
+
+button {
+    border: none;
+
+    padding: 16px 35px;
+
+    margin-top: 25px;
+
+    border-radius: 999px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: #ff6f91;
+
+    color: white;
+
+    transition: 0.2s;
+}
+
+
+button:hover {
+    transform: scale(1.08);
+}
+
+
+button:active {
+    transform: scale(0.95);
+}
+
+
+/* =====================
+   HIDDEN
+===================== */
+
+.hidden {
+    display: none;
+}
+
+
+/* =====================
+   SURPRISE
+===================== */
+
+#surprise {
+    animation: surpriseAppear 0.8s ease;
+}
+
+
+@keyframes surpriseAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.birthday-name {
+    color: #ff5c8a;
+
+    font-size: 32px;
+}
+
+
+/* =====================
+   INVESTIGATION
+===================== */
+
+.investigation {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: #fff0f5;
+
+    border: 2px dashed #ff9fba;
+}
+
+
+.investigation p {
+    margin: 8px 0;
+}
+
+
+/* =====================
+   PHOTOS
+===================== */
+
+.section-title {
+    margin-top: 40px;
+
+    margin-bottom: 20px;
+}
+
+
+.photos {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.photo-card {
+    padding: 10px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+
+.photo-card:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+
+.photo-card img {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    display: block;
+}
+
+
+.photo-card p {
+    font-size: 13px;
+
+    margin-top: 8px;
+}
+
+
+/* =====================
+   MESSAGE
+===================== */
+
+.message {
+    margin-top: 40px;
+
+    padding: 30px 20px;
+
+    background: #fff8fb;
+
+    border-radius: 20px;
+}
+
+
+.message h2 {
+    color: #ff5c8a;
+}
+
+
+.message h3 {
+    margin-top: 15px;
+
+    color: #ff5c8a;
+
+    font-size: 22px;
+}
+
+
+/* =====================
+   CLOSING
+===================== */
+
+.closing {
+    margin-top: 40px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eee;
+}
+
+
+.closing div {
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+.closing h2 {
+    color: #ff5c8a;
+}
+
+
+/* =====================
+   BALLOONS
+===================== */
+
+.balloons {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+.balloon {
+    position: absolute;
+
+    bottom: -100px;
+
+    font-size: 50px;
+
+    animation: flyUp 9s linear infinite;
+}
+
+
+.balloon:nth-child(1) {
+    left: 5%;
+    animation-delay: 0s;
+}
+
+
+.balloon:nth-child(2) {
+    left: 25%;
+    animation-delay: 2s;
+}
+
+
+.balloon:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+
+.balloon:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+}
+
+
+.balloon:nth-child(5) {
+    left: 90%;
+    animation-delay: 3s;
+}
+
+
+@keyframes flyUp {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(-10deg);
+    }
+
+    to {
+        transform:
+            translateY(-120vh)
+            rotate(10deg);
+    }
+
+}
+
+
+/* =====================
+   CONFETTI
+===================== */
+
+.confetti {
+    position: fixed;
+
+    top: -20px;
+
+    width: 10px;
+
+    height: 10px;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    background: #ff6f91;
+
+    animation:
+        confettiFall 3s linear forwards;
+}
+
+
+@keyframes confettiFall {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+
+}
+
+
+/* =====================
+   MOBILE
+===================== */
+
+@media (max-width: 500px) {
+
+    .birthday-card {
+        padding: 35px 20px;
+    }
+
+
+    h1 {
+        font-size: 28px;
+    }
+
+
+    .photos {
+        grid-template-columns: 1fr;
+    }
+
+}

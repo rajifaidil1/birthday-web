@@ -1,181 +1,592 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="id" data-motion="full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffeef3" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Sudut kecil di internet yang dibuat khusus untuk merayakan hari ulang tahunmu ♡" />
+  <title>Happy Birthday ♡ — Kejutan Kecil Untukmu</title>
 
-    <title>Happy Birthday 🎂</title>
+  <!-- Google Fonts: Cormorant Garamond (Serif Romantis), Quicksand (Bulat & Bersih), Caveat (Tulisan Tangan Scrapbook) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="style.css">
+  <!-- Stylesheet Relatif untuk GitHub Pages (/birthday-web/) -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <!-- Skip Link untuk Aksesibilitas Keyboard -->
+  <a href="#main-content" class="skip-link">Langsung ke isi utama</a>
 
-    <!-- BALON -->
-    <div class="balloons">
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
-        <div class="balloon">🎈</div>
+  <!-- Kanvas Partikel Latar (Kelopak Bunga, Kilauan, Confetti) -->
+  <canvas id="celebration-canvas" aria-hidden="true"></canvas>
+
+  <!-- Wadah Hati Melayang & Kilauan Kursor -->
+  <div id="floating-effects-layer" aria-hidden="true"></div>
+
+  <!-- =========================================================
+       2. HALAMAN PEMBUKA — KEJUTAN RAHASIA (FULL-SCREEN INTRO)
+       ========================================================= -->
+  <section id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-labelledby="intro-whisper-text">
+    <div class="intro-ambient-decor" aria-hidden="true">
+      <span class="ambient-item item-1">🎀</span>
+      <span class="ambient-item item-2">✨</span>
+      <span class="ambient-item item-3">♡</span>
+      <span class="ambient-item item-4">🍒</span>
+      <span class="ambient-item item-5">✦</span>
+      <span class="ambient-item item-6">🌸</span>
+      <span class="ambient-item item-7">🎀</span>
+      <span class="ambient-item item-8">♡</span>
     </div>
 
-    <!-- CONFETTI -->
-    <div id="confetti-container"></div>
+    <div class="intro-card">
+      <div class="intro-Floating-Badge">✦ EDISI SPESIAL ULANG TAHUN ✦</div>
 
+      <p id="intro-whisper-text" class="intro-whisper">
+        psst... seseorang membuat sesuatu yang spesial untukmu ♡
+      </p>
+      <p class="intro-subwhisper">
+        sudut kecil di internet ini hari ini sepenuhnya milikmu.
+      </p>
 
-    <!-- CARD -->
-    <main class="birthday-card">
+      <!-- Amplop Interaktif dengan Segel Pita Pink -->
+      <div class="envelope-stage" id="envelope-stage">
+        <div class="envelope-wrapper" id="envelope-wrapper" aria-hidden="true">
+          <div class="envelope-back"></div>
+          <div class="envelope-letter" id="envelope-letter">
+            <div class="letter-mini-header">Untuk seseorang yang istimewa ♡</div>
+            <div class="letter-mini-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="letter-mini-sign">🎀</div>
+          </div>
+          <div class="envelope-front-left"></div>
+          <div class="envelope-front-right"></div>
+          <div class="envelope-bottom"></div>
+          <div class="envelope-flap" id="envelope-flap"></div>
+          <div class="envelope-ribbon-seal" id="envelope-seal">
+            <span class="ribbon-bow">🎀</span>
+          </div>
+        </div>
+      </div>
 
-        <!-- HALAMAN AWAL -->
-        <section id="opening">
+      <div class="intro-actions">
+        <button type="button" id="open-surprise-btn" class="btn-primary-kawaii pulse-glow">
+          <span>buka kejutan kecilmu 🎀</span>
+        </button>
 
-            <div class="emoji">🎀</div>
+        <button type="button" id="skip-intro-btn" class="btn-skip-intro">
+          lewati intro &amp; kurangi animasi ↷
+        </button>
+      </div>
+    </div>
+  </section>
 
-            <h1>Hey there! 👀</h1>
+  <!-- =========================================================
+       NAVIGASI MELAYANG & STATUS PESAN RAHASIA
+       ========================================================= -->
+  <header class="top-floating-nav" id="top-nav">
+    <div class="nav-inner glass-pill">
+      <a href="#hero-section" class="nav-brand">
+        <span class="brand-bow">🎀</span>
+        <span id="nav-recipient-label">Birthday Universe</span>
+      </a>
 
-            <p>
-                Someone prepared a little surprise for you...
+      <nav class="nav-links" aria-label="Navigasi bagian halaman">
+        <a href="#investigation-section">Investigasi</a>
+        <a href="#scrapbook-section">Scrapbook</a>
+        <a href="#timeline-section">Kenangan</a>
+        <a href="#wish-section">Permohonan</a>
+        <a href="#letter-section">Surat ♡</a>
+      </nav>
+
+      <div class="nav-utilities">
+        <button type="button" id="secret-counter-btn" class="secret-counter-pill" aria-label="Lihat daftar pesan rahasia yang ditemukan">
+          <span aria-hidden="true">♡</span>
+          <span id="secret-count-text">0/3 Rahasia</span>
+        </button>
+
+        <button type="button" id="motion-toggle-btn" class="motion-toggle-btn" aria-pressed="false" title="Aktifkan atau kurangi gerakan animasi">
+          <span id="motion-toggle-icon" aria-hidden="true">✨</span>
+          <span class="sr-only">Ubah mode animasi</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       ISI UTAMA PENGALAMAN ULANG TAHUN
+       ========================================================= -->
+  <main id="main-content" class="main-universe" tabindex="-1">
+
+    <!-- 3. REVEAL ULANG TAHUN SINEMATIK (HERO) -->
+    <section id="hero-section" class="hero-section section-block">
+      <div class="cinematic-veil" id="cinematic-veil" aria-hidden="true"></div>
+
+      <!-- Balon Pastel Melayang -->
+      <div class="hero-balloons" aria-hidden="true">
+        <div class="balloon balloon-pink">
+          <span class="balloon-shine"></span>
+          <span class="balloon-string"></span>
+        </div>
+        <div class="balloon balloon-lavender">
+          <span class="balloon-shine"></span>
+          <span class="balloon-string"></span>
+        </div>
+        <div class="balloon balloon-peach">
+          <span class="balloon-shine"></span>
+          <span class="balloon-string"></span>
+        </div>
+        <div class="balloon balloon-rose">
+          <span class="balloon-shine"></span>
+          <span class="balloon-string"></span>
+        </div>
+      </div>
+
+      <div class="container hero-stage" id="hero-camera-stage">
+        <div class="hero-sticker-row">
+          <span class="kawaii-tag">🍒 Babak Baru Dimulai</span>
+          <span class="kawaii-tag">✨ Edisi Terbatas</span>
+          <!-- Hati Rahasia #1 -->
+          <button type="button" class="secret-heart-trigger" data-secret-id="0" aria-label="Temukan pesan rahasia pertama">
+            ♡ klik aku
+          </button>
+        </div>
+
+        <h1 class="hero-title" id="hero-title">
+          HAPPY BIRTHDAY, <span id="recipient-name-hero" class="highlight-recipient">[NAMA YANG BERULANG TAHUN]</span> ♡
+        </h1>
+
+        <p class="hero-subtitle" id="hero-typewriter" aria-live="polite">
+          hari ini, semesta merayakan dirimu.
+        </p>
+
+        <!-- Kue Ulang Tahun Animasi di Hero -->
+        <div class="hero-cake-showcase" role="img" aria-label="Kue ulang tahun bertingkat pastel dengan lilin menyala">
+          <div class="cake-glow-aura"></div>
+          <div class="cake-illustration">
+            <div class="cake-candles-row">
+              <div class="candle">
+                <span class="flame"></span>
+                <span class="wick"></span>
+              </div>
+              <div class="candle candle-center">
+                <span class="flame"></span>
+                <span class="wick"></span>
+              </div>
+              <div class="candle">
+                <span class="flame"></span>
+                <span class="wick"></span>
+              </div>
+            </div>
+            <div class="cake-top-cherries">
+              <span>🍒</span><span>🎀</span><span>🍒</span>
+            </div>
+            <div class="cake-tier tier-top">
+              <div class="frosting-drip"></div>
+            </div>
+            <div class="cake-tier tier-bottom">
+              <div class="frosting-drip"></div>
+              <div class="cake-ribbon-trim">♡ ✦ ♡ ✦ ♡</div>
+            </div>
+            <div class="cake-plate"></div>
+          </div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#investigation-section" class="btn-secondary-kawaii">
+            mulai jelajahi ceritamu ↓
+          </a>
+          <button type="button" id="hero-confetti-btn" class="btn-ghost-kawaii">
+            taburkan kilauan &amp; confetti ✨
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. BIRTHDAY INVESTIGATION — ROASTING LUCU -->
+    <section id="investigation-section" class="section-block investigation-section">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow">BERKAS KASUS #B-DAY-01</span>
+          <h2 class="section-title" id="investigation-title">🔎 investigasi ulang tahun</h2>
+          <p class="section-desc">
+            Hasil audit independen dari semesta terhadap tingkat kelucuan, drama, dan kedewasaanmu tahun ini. (Klik kartu untuk melihat catatan detektif!)
+          </p>
+        </div>
+
+        <div class="dossier-board reveal-on-scroll">
+          <div class="dossier-stamp" aria-hidden="true">TERVERIFIKASI GEMAS ★</div>
+          <div class="washi-tape tape-top-left" aria-hidden="true"></div>
+          <div class="washi-tape tape-top-right" aria-hidden="true"></div>
+
+          <!-- Grid Statistik Investigasi (Dirender dari Konfigurasi JS) -->
+          <div id="investigation-grid" class="investigation-grid" role="list"></div>
+
+          <div class="dossier-footer">
+            <p id="investigation-joke-banner" class="investigation-joke-banner" aria-live="polite">
+              💡 Tip: Ketuk atau arahkan kursor ke salah satu lencana di atas untuk membuka bukti rahasia!
             </p>
-
-            <button id="openButton">
-                OPEN 🎁
+            <!-- Hati Rahasia #2 -->
+            <button type="button" class="secret-heart-trigger" data-secret-id="1" aria-label="Temukan pesan rahasia kedua">
+              ♡ catatan kaki rahasia
             </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        </section>
+    <!-- 6. SCRAPBOOK FOTO INTERAKTIF -->
+    <section id="scrapbook-section" class="section-block scrapbook-section">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow">KOLEKSI POLAROID &amp; STIKER</span>
+          <h2 class="section-title">scrapbook kenangan kita 📸</h2>
+          <p class="section-desc">
+            Potongan momen yang terlalu berharga kalau cuma tersimpan di memori ponsel. Klik foto polaroid untuk melihat ukuran penuh.
+          </p>
+        </div>
 
+        <!-- Galeri Polaroid (Menggunakan foto1.jpg, foto2.jpg, foto3.jpg) -->
+        <div id="scrapbook-gallery" class="scrapbook-gallery"></div>
+      </div>
+    </section>
 
-        <!-- HALAMAN SURPRISE -->
-        <section id="surprise" class="hidden">
+    <!-- 7. TIMELINE KENANGAN INTERAKTIF -->
+    <section id="timeline-section" class="section-block timeline-section">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow">JEJAK WAKTU</span>
+          <h2 class="section-title" id="timeline-title">momen kecil, kenangan besar</h2>
+          <p class="section-desc">
+            Setiap bab punya ceritanya sendiri—dan bagian terbaiknya adalah kita masih punya banyak halaman kosong untuk diisi.
+          </p>
+        </div>
 
-            <div class="big-emoji">
-                🎉
-            </div>
+        <div class="timeline-wrapper">
+          <div class="timeline-center-line" aria-hidden="true"></div>
+          <div id="timeline-list" class="timeline-list"></div>
+        </div>
+      </div>
+    </section>
 
-            <h1>
-                HAPPY BIRTHDAY! 🎂
-            </h1>
+    <!-- 8. INTERAKSI KEJUTAN (KOTAK HADIAH & PERMOHONAN LILIN) -->
+    <section id="wish-section" class="section-block surprise-section">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-eyebrow">POJOK AJAIB &amp; KEJUTAN</span>
+          <h2 class="section-title">kotak kejutan &amp; lilin permohonan ✨</h2>
+          <p class="section-desc">
+            Sebelum membaca surat terakhir, ada kotak hadiah kecil dan lilin ulang tahun yang menunggu disentuh.
+          </p>
+        </div>
 
-            <h2 class="birthday-name">
-                NAMA KAMU
-            </h2>
+        <div class="surprise-grid">
+          <!-- Kartu Interaktif 1: Kotak Hadiah -->
+          <article class="surprise-card glass-card reveal-on-scroll">
+            <div class="card-sticker-badge">🎀 Kejutan #1</div>
+            <h3>Kotak Hadiah Spesial</h3>
+            <p class="card-subtext">Sentuh atau klik kotak kado di bawah ini untuk membuka kupon ulang tahunmu!</p>
 
-            <p>
-                Yey! Kamu berhasil membuka kejutan ini! 💖
-            </p>
+            <div class="gift-stage">
+              <button type="button" id="gift-box-btn" class="gift-box-btn" aria-expanded="false" aria-controls="gift-reveal-panel">
+                <span class="gift-lid" id="gift-lid" aria-hidden="true">🎀</span>
+                <span class="gift-body" aria-hidden="true">🎁</span>
+                <span class="gift-prompt" id="gift-prompt-text">Ketuk untuk membuka kado!</span>
+              </button>
 
-            <p>
-                Selamat bertambah umur! 🥳
-            </p>
-
-
-            <!-- INVESTIGATION -->
-            <div class="investigation">
-
-                <h2>🔎 Birthday Investigation</h2>
-
-                <p>
-                    <strong>Age:</strong> 20
-                </p>
-
-                <p>
-                    <strong>Status:</strong> Getting older 📈
-                </p>
-
-                <p>
-                    <strong>Maturity:</strong> Error 404 ❌
-                </p>
-
-                <p>
-                    <strong>Experience:</strong> +1 Year ✨
-                </p>
-
-            </div>
-
-
-            <!-- FOTO -->
-            <h2 class="section-title">
-                📸 Some Memories
-            </h2>
-
-            <div class="photos">
-
-                <div class="photo-card">
-                    <img src="images/foto1.jpg" alt="Foto 1">
-                    <p>Look at this cutie 🥹</p>
+              <div id="gift-reveal-panel" class="gift-reveal-panel" hidden>
+                <div class="voucher-ticket">
+                  <span class="voucher-tag">✦ VOUCHER ULANG TAHUN RESMI ✦</span>
+                  <h4 id="voucher-title">Tiket Emas Kebahagiaan Tanpa Batas ♡</h4>
+                  <p id="voucher-desc">
+                    Berlaku untuk: 1x traktiran makanan favoritmu, sesi curhat tanpa dihakimi kapan saja, dan dukungan penuh selama 365 hari ke depan!
+                  </p>
+                  <span class="voucher-code">KODE: BDAY-VIP-FOREVER</span>
                 </div>
+              </div>
+            </div>
+          </article>
 
-                <div class="photo-card">
-                    <img src="images/foto2.jpg" alt="Foto 2">
-                    <p>Still cute somehow 😂</p>
+          <!-- Kartu Interaktif 2: Tiup Lilin & Buat Permohonan -->
+          <article class="surprise-card glass-card reveal-on-scroll">
+            <div class="card-sticker-badge">🕯️ Kejutan #2</div>
+            <h3>Saatnya Membuat Permohonan</h3>
+            <p class="card-subtext">Pejamkan mata sebentar, ucapkan harapan terbaikmu di dalam hati, lalu tekan tombol di bawah.</p>
+
+            <div class="wish-candle-stage">
+              <div class="wish-cupcake" id="wish-cupcake" role="img" aria-label="Kue ulang tahun dengan lilin permohonan">
+                <div class="wish-candle-stick">
+                  <div class="wish-flame" id="wish-flame"></div>
+                  <div class="wish-smoke" id="wish-smoke" aria-hidden="true">
+                    <span>~</span><span>~</span><span>~</span>
+                  </div>
                 </div>
+                <div class="wish-frosting">🍒</div>
+                <div class="wish-base"></div>
+              </div>
 
-                <div class="photo-card">
-                    <img src="images/foto3.jpg" alt="Foto 3">
-                    <p>Okay this one is adorable 💗</p>
-                </div>
+              <p id="wish-status-message" class="wish-status-message" aria-live="polite">
+                Lilin masih menyala terang... siap menyimpan harapanmu ✨
+              </p>
 
+              <div class="wish-actions">
+                <button type="button" id="make-wish-btn" class="btn-primary-kawaii">
+                  <span>buat permohonan ✨</span>
+                </button>
+                <button type="button" id="relight-candle-btn" class="btn-ghost-kawaii" hidden>
+                  nyalakan lilin lagi 🔥
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SURAT YANG MENYENTUH HATI -->
+    <section id="letter-section" class="section-block letter-section">
+      <div class="container">
+        <article class="love-letter-paper reveal-on-scroll" aria-labelledby="letter-heading">
+          <div class="washi-tape tape-center-top" aria-hidden="true"></div>
+
+          <!-- Segel Lilin Hati -->
+          <div class="wax-seal-emblem" aria-hidden="true">
+            <span class="wax-heart">♡</span>
+          </div>
+
+          <header class="letter-header">
+            <span class="letter-date-stamp" id="letter-date-stamp">Edisi Hari Spesialmu</span>
+            <h2 id="letter-heading" class="letter-title">oke, bercanda dulu... 💌</h2>
+          </header>
+
+          <!-- Isi Surat (Muncul baris demi baris dengan efek fade lembut) -->
+          <div id="letter-body-container" class="letter-body"></div>
+
+          <footer class="letter-footer">
+            <div class="letter-signature-block">
+              <span class="signature-label">Dengan penuh kasih &amp; doa terbaik,</span>
+              <span class="signature-name" id="letter-sender-name">[NAMA PENGIRIM / SAHABATMU] ♡</span>
             </div>
 
-
-            <!-- PESAN -->
-            <div class="message">
-
-                <h2>
-                    💌 Okay, jokes aside...
-                </h2>
-
-                <p>
-                    Semoga di umur yang baru ini,
-                    kamu selalu dikelilingi orang-orang
-                    yang sayang sama kamu.
-                </p>
-
-                <p>
-                    Semoga semua hal yang kamu impikan
-                    pelan-pelan bisa menjadi kenyataan.
-                </p>
-
-                <p>
-                    Jangan lupa bahagia,
-                    jangan lupa makan,
-                    dan yang paling penting...
-                </p>
-
-                <h3>
-                    Jangan lupa traktir. 😌
-                </h3>
-
+            <div class="letter-footer-actions">
+              <button type="button" id="replay-letter-btn" class="btn-tiny-kawaii">
+                baca ulang animasi surat 💌
+              </button>
+              <!-- Hati Rahasia #3 -->
+              <button type="button" class="secret-heart-trigger" data-secret-id="2" aria-label="Temukan pesan rahasia ketiga">
+                ♡ P.S. rahasia
+              </button>
             </div>
+          </footer>
+        </article>
+      </div>
+    </section>
 
+    <!-- 10. ADEGAN PENUTUP (FINALE SCENE) -->
+    <section id="finale-section" class="section-block finale-section">
+      <div class="finale-petals-decor" aria-hidden="true">
+        <span>🌸</span><span>♡</span><span>✨</span><span>🎀</span><span>🌸</span>
+      </div>
 
-            <!-- PENUTUP -->
-            <div class="closing">
-
-                <div>
-                    🎂 🎈 🎁 💖 🎉
-                </div>
-
-                <h2>
-                    Happy Birthday! 🥳
-                </h2>
-
-                <p>
-                    Here's to another year
-                    of beautiful memories.
-                </p>
-
+      <div class="container finale-stage reveal-on-scroll">
+        <!-- Kue Pastel Penutup dengan Lilin Menyala & Hati Animasi -->
+        <div class="finale-illustration" aria-hidden="true">
+          <div class="finale-floating-hearts">
+            <span class="f-heart h1">♡</span>
+            <span class="f-heart h2">💖</span>
+            <span class="f-heart h3">♡</span>
+          </div>
+          <div class="finale-mini-cake">
+            <div class="finale-candle">
+              <span class="finale-flame"></span>
             </div>
+            <div class="finale-cake-body">🎀 ♡ 🎀</div>
+            <div class="finale-cake-stand"></div>
+          </div>
+        </div>
 
-        </section>
+        <h2 class="finale-headline" id="finale-headline-1">
+          bertambah usia, tetap menjadi satu-satunya dirimu yang istimewa ♡
+        </h2>
 
-    </main>
+        <p class="finale-subheadline" id="finale-headline-2">
+          selamat ulang tahun. kamu lebih disayangi daripada yang kamu tahu.
+        </p>
 
+        <div class="finale-actions">
+          <button type="button" id="replay-experience-btn" class="btn-primary-kawaii">
+            <span>putar kembali momen kecil kita ↻</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
+  <!-- =========================================================
+       KARAKTER MASKOT MELAMBAI (POJOK KIRI BAWAH)
+       ========================================================= -->
+  <aside class="kawaii-mascot-widget" aria-label="Karakter pendamping ulang tahun">
+    <div id="mascot-speech-bubble" class="mascot-speech-bubble" role="status" aria-live="polite">
+      Selamat ulang tahun! Klik aku kapan saja ya ♡
+    </div>
+    <button type="button" id="mascot-btn" class="mascot-btn" aria-label="Sapa karakter beruang pita">
+      <svg class="mascot-svg" viewBox="0 0 100 100" width="64" height="64" aria-hidden="true">
+        <!-- Telinga Beruang Pastel -->
+        <circle cx="26" cy="28" r="14" fill="#ffccd8" stroke="#5c2d3e" stroke-width="3" />
+        <circle cx="26" cy="28" r="7" fill="#ffa6be" />
+        <circle cx="74" cy="28" r="14" fill="#ffccd8" stroke="#5c2d3e" stroke-width="3" />
+        <circle cx="74" cy="28" r="7" fill="#ffa6be" />
+        <!-- Kepala & Badan -->
+        <ellipse cx="50" cy="78" rx="24" ry="18" fill="#fff5f8" stroke="#5c2d3e" stroke-width="3" />
+        <circle cx="50" cy="48" r="28" fill="#fff5f8" stroke="#5c2d3e" stroke-width="3" />
+        <!-- Pipi Merona -->
+        <ellipse cx="33" cy="52" rx="6" ry="3.5" fill="#ff9ebb" />
+        <ellipse cx="67" cy="52" rx="6" ry="3.5" fill="#ff9ebb" />
+        <!-- Mata & Hidung -->
+        <circle cx="38" cy="45" r="3.2" fill="#4a2030" />
+        <circle cx="62" cy="45" r="3.2" fill="#4a2030" />
+        <ellipse cx="50" cy="50" rx="4" ry="3" fill="#ff7aa2" />
+        <path d="M46 55 Q50 59 54 55" fill="none" stroke="#4a2030" stroke-width="2.5" stroke-linecap="round" />
+        <!-- Pita Pink di Kepala -->
+        <path d="M62 22 L74 16 L72 28 Z" fill="#ff5d8f" stroke="#5c2d3e" stroke-width="2" />
+        <path d="M62 22 L50 16 L52 28 Z" fill="#ff5d8f" stroke="#5c2d3e" stroke-width="2" />
+        <circle cx="62" cy="22" r="3.5" fill="#ffacc5" stroke="#5c2d3e" stroke-width="2" />
+        <!-- Tangan Melambai -->
+        <g class="mascot-waving-paw">
+          <ellipse cx="80" cy="68" rx="9" ry="6" transform="rotate(-25 80 68)" fill="#fff5f8" stroke="#5c2d3e" stroke-width="3" />
+        </g>
+      </svg>
+    </button>
+  </aside>
 
+  <!-- =========================================================
+       4. PEMUTAR MUSIK MINI — PLAYLIST ROMANTIS
+       ========================================================= -->
+  <aside id="music-player-widget" class="music-player-widget" aria-label="Pemutar musik latar">
+    <!-- Tombol Buka/Kecilkan Pemutar -->
+    <button type="button" id="music-minimize-btn" class="music-minimize-btn" aria-expanded="true" aria-controls="music-player-body" title="Kecilkan atau buka pemutar musik">
+      <span id="music-minimize-icon" aria-hidden="true">▾</span>
+      <span class="sr-only">Kecilkan atau buka kembali pemutar musik</span>
+    </button>
+
+    <div id="music-player-body" class="music-player-body">
+      <div class="music-note-caption">
+        soundtrack untuk semesta ulang tahun kecilmu ♡
+      </div>
+
+      <div class="music-main-row">
+        <!-- Piringan Hitam / CD Berputar + Sampul Album Placeholder -->
+        <div class="vinyl-disc-wrapper" id="vinyl-disc" aria-hidden="true">
+          <div class="vinyl-grooves"></div>
+          <div class="vinyl-cover-art">
+            <span>♡</span>
+          </div>
+        </div>
+
+        <div class="music-meta">
+          <div class="music-title-row">
+            <span id="music-track-title" class="music-track-title">Dreamy Birthday Serenade</span>
+            <!-- Gelombang Suara Animasi -->
+            <div id="soundwave-indicator" class="soundwave-indicator" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <span id="music-track-artist" class="music-track-artist">Romantic Pop Playlist ♡</span>
+        </div>
+
+        <div class="music-controls">
+          <button type="button" id="music-play-btn" class="music-ctrl-btn play-btn" aria-label="Putar atau jeda musik">
+            <span id="music-play-icon" aria-hidden="true">▶</span>
+          </button>
+          <button type="button" id="music-mute-btn" class="music-ctrl-btn mute-btn" aria-label="Bisukan atau nyalakan suara">
+            <span id="music-mute-icon" aria-hidden="true">🔊</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bilah Progres Audio -->
+      <div class="music-progress-row">
+        <span id="music-current-time" class="music-time">0:00</span>
+        <input
+          type="range"
+          id="music-seek-bar"
+          class="music-seek-bar"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+          aria-label="Progres pemutaran lagu"
+        />
+        <span id="music-duration" class="music-time">0:00</span>
+      </div>
+
+      <!-- Pesan Ramah Jika File Audio Belum Tersedia + Opsi Melodi Kotak Musik Bawaan -->
+      <div id="music-fallback-notice" class="music-fallback-notice" hidden>
+        <p id="music-fallback-text">
+          File lagu belum ditemukan di <code>audio/birthday-song.mp3</code>. Mode melodi kotak musik impian diaktifkan otomatis ♡
+        </p>
+      </div>
+    </div>
+
+    <!-- Elemen Audio HTML5 (Jalur Relatif) -->
+    <audio id="birthday-audio" preload="metadata" loop></audio>
+  </aside>
+
+  <!-- =========================================================
+       MODAL LIGHTBOX FOTO SCRAPBOOK
+       ========================================================= -->
+  <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" hidden>
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button type="button" id="lightbox-close-btn" class="lightbox-close-btn" aria-label="Tutup tampilan foto">
+        ✕
+      </button>
+
+      <button type="button" id="lightbox-prev-btn" class="lightbox-nav-btn prev-btn" aria-label="Foto sebelumnya">
+        ‹
+      </button>
+
+      <figure class="lightbox-polaroid">
+        <div class="lightbox-img-frame">
+          <img id="lightbox-image" src="" alt="" />
+        </div>
+        <figcaption class="lightbox-caption-area">
+          <p id="lightbox-caption" class="lightbox-handwritten"></p>
+          <div class="lightbox-meta-row">
+            <span id="lightbox-note" class="lightbox-note"></span>
+            <span id="lightbox-counter" class="lightbox-counter">1 / 3</span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <button type="button" id="lightbox-next-btn" class="lightbox-nav-btn next-btn" aria-label="Foto berikutnya">
+        ›
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL PESAN RAHASIA TERSEMBUNYI
+       ========================================================= -->
+  <div id="secret-modal" class="secret-modal" role="dialog" aria-modal="true" aria-labelledby="secret-modal-title" hidden>
+    <div class="secret-modal-backdrop" id="secret-modal-backdrop"></div>
+    <div class="secret-modal-card">
+      <span class="secret-badge-top">🎀 PESAN RAHASIA TERBUKA 🎀</span>
+      <h3 id="secret-modal-title">Catatan Kecil Untukmu ♡</h3>
+      <p id="secret-modal-message" class="secret-modal-message"></p>
+      <p id="secret-modal-progress" class="secret-modal-progress"></p>
+      <button type="button" id="secret-modal-close" class="btn-primary-kawaii">
+        <span>simpan di hati ♡</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Script Utama Relatif untuk GitHub Pages -->
+  <script src="script.js"></script>
 </body>
-
 </html>

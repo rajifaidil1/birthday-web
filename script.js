@@ -2,8 +2,10 @@
  * ============================================================================
  * 13. KONFIGURASI PERSONALISASI (EDIT BAGIAN INI DENGAN MUDAH)
  * ============================================================================
- * Seluruh data personal, nama, foto, keterangan scrapbook, timeline,
- * surat, file musik lokal, serta link Spotify dapat diubah di BIRTHDAY_CONFIG.
+ * Urutan Foto (Total 9 Foto di dalam folder images/):
+ * - foto1.jpg & foto2.jpg : Halaman 1 (Bingkai Kiri & Kanan Kue Ulang Tahun)
+ * - foto3.jpg - foto5.jpg : Bagian Scrapbook Polaroid
+ * - foto6.jpg - foto9.jpg : Bagian Timeline Kenangan
  */
 const BIRTHDAY_CONFIG = {
   // Nama yang berulang tahun & pengirim
@@ -13,6 +15,97 @@ const BIRTHDAY_CONFIG = {
 
   // Subjudul Hero (akan ditampilkan dengan efek ketikan / typewriter)
   heroSubtitle: "hari ini, semesta merayakan dirimu.",
+
+  // ==========================================================================
+  // FOTO 1 & FOTO 2: Halaman 1 (Bingkai Kiri & Kanan Kue Ulang Tahun)
+  // ==========================================================================
+  heroSidePhotos: {
+    left: {
+      src: "images/foto1.jpg",
+      alt: "Foto 1 — Sebelah kiri kue ulang tahun",
+      caption: "the birthday star ✨",
+      note: "Halaman Pembuka • Foto #1",
+      sticker: "🎀"
+    },
+    right: {
+      src: "images/foto2.jpg",
+      alt: "Foto 2 — Sebelah kanan kue ulang tahun",
+      caption: "selalu manis ♡",
+      note: "Halaman Pembuka • Foto #2",
+      sticker: "🍒"
+    }
+  },
+
+  // ==========================================================================
+  // FOTO 3, FOTO 4, FOTO 5: Galeri Scrapbook Foto Interaktif
+  // ==========================================================================
+  photos: [
+    {
+      src: "images/foto3.jpg",
+      alt: "Foto 3 — Kenangan pertama di scrapbook",
+      caption: "bukti kalau kita memang menggemaskan ♡",
+      note: "Salah satu foto yang selalu berhasil bikin senyum sendiri.",
+      sticker: "🎀",
+      tilt: "-2.5deg",
+      tapeTilt: "3deg"
+    },
+    {
+      src: "images/foto4.jpg",
+      alt: "Foto 4 — Kenangan kedua di scrapbook",
+      caption: "salah satu kenangan favoritku",
+      note: "Waktu berjalan cepat, tapi momen ini tetap terasa hangat.",
+      sticker: "🍒",
+      tilt: "2deg",
+      tapeTilt: "-4deg"
+    },
+    {
+      src: "images/foto5.jpg",
+      alt: "Foto 5 — Kenangan ketiga di scrapbook",
+      caption: "galeri kamera ini sudah menyaksikan semuanya 😭",
+      note: "Momen ini layak punya museum sendiri ✨",
+      sticker: "🌸",
+      tilt: "-1.8deg",
+      tapeTilt: "2deg"
+    }
+  ],
+
+  // ==========================================================================
+  // FOTO 6, FOTO 7, FOTO 8, FOTO 9: Timeline Kenangan Interaktif
+  // ==========================================================================
+  timeline: [
+    {
+      date: "[TANGGAL KENANGAN 1 — mis. Awal Cerita Kita]",
+      title: "Pertemuan & Babak Pertama ✨",
+      description: "[GANTI DENGAN KENANGANMU: Tuliskan momen pertama kali kalian kenal atau kesan pertama yang paling lucu saat diingat sekarang.]",
+      image: "images/foto6.jpg",
+      icon: "🌸",
+      animClass: "timeline-anim-left"
+    },
+    {
+      date: "[TANGGAL KENANGAN 2 — mis. Hari Paling Seru]",
+      title: "Petualangan & Tawa Tanpa Henti 🎀",
+      description: "[GANTI DENGAN KENANGANMU: Ceritakan satu kejadian konyol, jalan-jalan dadakan, atau obrolan tengah malam yang tidak terlupakan.]",
+      image: "images/foto7.jpg",
+      icon: "🍒",
+      animClass: "timeline-anim-right"
+    },
+    {
+      date: "[TANGGAL KENANGAN 3 — mis. Momen Favorit]",
+      title: "Momen Ini Layak Punya Museum Sendiri 🏆",
+      description: "[GANTI DENGAN KENANGANMU: Tuliskan momen ketika kalian saling mendukung atau kenangan manis yang selalu bikin kangen.]",
+      image: "images/foto8.jpg",
+      icon: "💌",
+      animClass: "timeline-anim-pop"
+    },
+    {
+      date: "Hari Ini & Seterusnya ♡",
+      title: "Merayakan Babak Baru Hidupmu 🎂",
+      description: "Hari ini semesta merayakan bertambahnya usiamu—dan semoga tahun ini membawa lebih banyak keajaiban untukmu.",
+      image: "images/foto9.jpg",
+      icon: "✨",
+      animClass: "timeline-anim-left"
+    }
+  ],
 
   // Konfigurasi Audio / Playlist Romantis + Embed Spotify Resmi
   audio: {
@@ -24,8 +117,6 @@ const BIRTHDAY_CONFIG = {
     enableSynthFallback: true,
 
     // 2. Link Lagu / Playlist / Album Spotify Resmi
-    // Cukup tempel link Share Spotify biasa atau link Embed di sini.
-    // Contoh di bawah adalah link resmi lagu "Lover" — Taylor Swift di Spotify:
     spotifyUrl: "https://open.spotify.com/track/1dGr1c8CrMLDpV6mPbImSI"
   },
 
@@ -81,74 +172,6 @@ const BIRTHDAY_CONFIG = {
     }
   ],
 
-  // 6. Scrapbook Foto Interaktif (Menggunakan file asli di folder images/)
-  // Catatan: Jalur menggunakan path relatif "images/..." agar aman di GitHub Pages
-  photos: [
-    {
-      src: "images/foto1.jpg",
-      alt: "Kenangan spesial pertama di scrapbook ulang tahun",
-      caption: "bukti kalau kita memang menggemaskan ♡",
-      note: "Salah satu foto yang selalu berhasil bikin senyum sendiri.",
-      sticker: "🎀",
-      tilt: "-2.5deg",
-      tapeTilt: "3deg"
-    },
-    {
-      src: "images/foto2.jpg",
-      alt: "Kenangan spesial kedua di scrapbook ulang tahun",
-      caption: "salah satu kenangan favoritku",
-      note: "Waktu berjalan cepat, tapi momen ini tetap terasa hangat.",
-      sticker: "🍒",
-      tilt: "2deg",
-      tapeTilt: "-4deg"
-    },
-    {
-      src: "images/foto3.jpg",
-      alt: "Kenangan spesial ketiga di scrapbook ulang tahun",
-      caption: "galeri kamera ini sudah menyaksikan semuanya 😭",
-      note: "Momen ini layak punya museum sendiri ✨",
-      sticker: "🌸",
-      tilt: "-1.8deg",
-      tapeTilt: "2deg"
-    }
-  ],
-
-  // 7. Timeline Kenangan Interaktif (Silakan ganti teks dalam tanda kurung siku)
-  timeline: [
-    {
-      date: "[TANGGAL KENANGAN 1 — mis. Awal Cerita Kita]",
-      title: "Pertemuan & Babak Pertama ✨",
-      description: "[GANTI DENGAN KENANGANMU: Tuliskan momen pertama kali kalian kenal atau kesan pertama yang paling lucu saat diingat sekarang.]",
-      image: "images/foto1.jpg",
-      icon: "🌸",
-      animClass: "timeline-anim-left"
-    },
-    {
-      date: "[TANGGAL KENANGAN 2 — mis. Hari Paling Seru]",
-      title: "Petualangan & Tawa Tanpa Henti 🎀",
-      description: "[GANTI DENGAN KENANGANMU: Ceritakan satu kejadian konyol, jalan-jalan dadakan, atau obrolan tengah malam yang tidak terlupakan.]",
-      image: "images/foto2.jpg",
-      icon: "🍒",
-      animClass: "timeline-anim-right"
-    },
-    {
-      date: "[TANGGAL KENANGAN 3 — mis. Momen Favorit]",
-      title: "Momen Ini Layak Punya Museum Sendiri 🏆",
-      description: "[GANTI DENGAN KENANGANMU: Tuliskan momen ketika kalian saling mendukung atau kenangan manis yang selalu bikin kangen.]",
-      image: "images/foto3.jpg",
-      icon: "💌",
-      animClass: "timeline-anim-pop"
-    },
-    {
-      date: "Hari Ini & Seterusnya ♡",
-      title: "Merayakan Babak Baru Hidupmu 🎂",
-      description: "Hari ini semesta merayakan bertambahnya usiamu—dan semoga tahun ini membawa lebih banyak keajaiban untukmu.",
-      image: "images/foto1.jpg",
-      icon: "✨",
-      animClass: "timeline-anim-left"
-    }
-  ],
-
   // 8. Pesan Rahasia Tersembunyi (Muncul saat tombol hati kecil ♡ diklik)
   secretMessages: [
     "Rahasia #1: Tahu nggak? Kehadiranmu itu sering jadi alasan kenapa hari orang-orang di sekitarmu terasa jauh lebih ringan dan menyenangkan ♡",
@@ -161,7 +184,7 @@ const BIRTHDAY_CONFIG = {
     "Selamat ulang tahun! Jangan lupa tiup lilinnya ya 🎂",
     "Psst... ada 3 tombol hati rahasia (♡) di halaman ini lho!",
     "Kamu kelihatan manis banget hari ini! 🎀",
-    "Klik foto polaroid untuk melihat kenangan lebih dekat 📸",
+    "Klik foto mana saja untuk melihat ukuran penuhnya ya 📸",
     "Semoga semua doa terbaikmu dikabulkan tahun ini ✨"
   ],
 
@@ -189,6 +212,7 @@ const BIRTHDAY_CONFIG = {
 const AppState = {
   reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   foundSecrets: new Set(),
+  lightboxItems: [],
   currentLightboxIndex: 0,
   isAudioPlaying: false,
   isMuted: false,
@@ -206,6 +230,7 @@ const AppState = {
  * ============================================================================
  */
 document.addEventListener("DOMContentLoaded", () => {
+  buildUnifiedLightboxList();
   applyPersonalizationConfig();
   initMotionPreference();
   renderInvestigationCards();
@@ -222,7 +247,60 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
+ * Menggabungkan ke-9 foto (foto1.jpg - foto9.jpg) ke dalam satu daftar Lightbox
+ * agar foto mana pun yang diklik menampilkan gambar yang tepat secara berurutan.
+ */
+function buildUnifiedLightboxList() {
+  const list = [];
+
+  // Index 0 & 1: Foto 1 & Foto 2 (Halaman 1 — Samping Kue)
+  if (BIRTHDAY_CONFIG.heroSidePhotos?.left) {
+    list.push({
+      src: BIRTHDAY_CONFIG.heroSidePhotos.left.src,
+      alt: BIRTHDAY_CONFIG.heroSidePhotos.left.alt || "Foto 1",
+      caption: BIRTHDAY_CONFIG.heroSidePhotos.left.caption || "",
+      note: BIRTHDAY_CONFIG.heroSidePhotos.left.note || "Foto #1",
+      fileNumber: 1
+    });
+  }
+  if (BIRTHDAY_CONFIG.heroSidePhotos?.right) {
+    list.push({
+      src: BIRTHDAY_CONFIG.heroSidePhotos.right.src,
+      alt: BIRTHDAY_CONFIG.heroSidePhotos.right.alt || "Foto 2",
+      caption: BIRTHDAY_CONFIG.heroSidePhotos.right.caption || "",
+      note: BIRTHDAY_CONFIG.heroSidePhotos.right.note || "Foto #2",
+      fileNumber: 2
+    });
+  }
+
+  // Index 2, 3, 4: Foto 3, Foto 4, Foto 5 (Scrapbook)
+  BIRTHDAY_CONFIG.photos.forEach((photo, idx) => {
+    list.push({
+      src: photo.src,
+      alt: photo.alt || `Foto ${idx + 3}`,
+      caption: photo.caption || "",
+      note: photo.note || `Scrapbook • Foto #${idx + 3}`,
+      fileNumber: idx + 3
+    });
+  });
+
+  // Index 5, 6, 7, 8: Foto 6, Foto 7, Foto 8, Foto 9 (Timeline Kenangan)
+  BIRTHDAY_CONFIG.timeline.forEach((item, idx) => {
+    list.push({
+      src: item.image,
+      alt: item.title || `Foto ${idx + 6}`,
+      caption: item.title || "",
+      note: item.date || `Kenangan • Foto #${idx + 6}`,
+      fileNumber: idx + 6
+    });
+  });
+
+  AppState.lightboxItems = list;
+}
+
+/**
  * Menerapkan data dari BIRTHDAY_CONFIG ke elemen-elemen halaman
+ * termasuk foto1.jpg dan foto2.jpg di sebelah kiri & kanan kue ulang tahun
  */
 function applyPersonalizationConfig() {
   const root = document.documentElement;
@@ -242,6 +320,42 @@ function applyPersonalizationConfig() {
   if (navLabelEl) navLabelEl.textContent = BIRTHDAY_CONFIG.recipientName;
   if (senderEl) senderEl.textContent = BIRTHDAY_CONFIG.senderName;
   if (dateStampEl) dateStampEl.textContent = BIRTHDAY_CONFIG.letterDateLabel;
+
+  // Konfigurasi Bingkai Foto Kiri (foto1.jpg) & Kanan (foto2.jpg) Kue Ulang Tahun
+  const sidePhotos = BIRTHDAY_CONFIG.heroSidePhotos;
+  if (sidePhotos) {
+    const leftImg = document.getElementById("hero-photo-left");
+    const leftCap = document.getElementById("hero-caption-left");
+    const leftSticker = document.getElementById("hero-sticker-left");
+    const leftFrame = document.querySelector(".hero-side-frame.frame-left");
+
+    if (leftImg && sidePhotos.left) {
+      leftImg.src = sidePhotos.left.src;
+      leftImg.alt = sidePhotos.left.alt || "Foto 1";
+      leftImg.onerror = () => {
+        leftImg.src = createPastelPlaceholderDataURI(sidePhotos.left.caption, 1);
+      };
+    }
+    if (leftCap && sidePhotos.left?.caption) leftCap.textContent = sidePhotos.left.caption;
+    if (leftSticker && sidePhotos.left?.sticker) leftSticker.textContent = sidePhotos.left.sticker;
+    leftFrame?.addEventListener("click", () => openLightboxBySrc(sidePhotos.left.src));
+
+    const rightImg = document.getElementById("hero-photo-right");
+    const rightCap = document.getElementById("hero-caption-right");
+    const rightSticker = document.getElementById("hero-sticker-right");
+    const rightFrame = document.querySelector(".hero-side-frame.frame-right");
+
+    if (rightImg && sidePhotos.right) {
+      rightImg.src = sidePhotos.right.src;
+      rightImg.alt = sidePhotos.right.alt || "Foto 2";
+      rightImg.onerror = () => {
+        rightImg.src = createPastelPlaceholderDataURI(sidePhotos.right.caption, 2);
+      };
+    }
+    if (rightCap && sidePhotos.right?.caption) rightCap.textContent = sidePhotos.right.caption;
+    if (rightSticker && sidePhotos.right?.sticker) rightSticker.textContent = sidePhotos.right.sticker;
+    rightFrame?.addEventListener("click", () => openLightboxBySrc(sidePhotos.right.src));
+  }
 }
 
 /**
@@ -419,7 +533,7 @@ function renderInvestigationCards() {
 
 /**
  * ============================================================================
- * 6. RENDER SCRAPBOOK FOTO POLAROID & PENANGANAN GAMBAR AMAN
+ * 6. RENDER SCRAPBOOK FOTO POLAROID (foto3.jpg, foto4.jpg, foto5.jpg)
  * ============================================================================
  */
 function renderScrapbookGallery() {
@@ -429,6 +543,9 @@ function renderScrapbookGallery() {
   gallery.innerHTML = "";
 
   BIRTHDAY_CONFIG.photos.forEach((photo, index) => {
+    // Urutan nomor file di scrapbook dimulai dari foto3.jpg (index + 3)
+    const photoFileNumber = index + 3;
+
     const figure = document.createElement("figure");
     figure.className = "polaroid-card reveal-on-scroll";
     figure.style.setProperty("--polaroid-tilt", photo.tilt || "-2deg");
@@ -448,15 +565,15 @@ function renderScrapbookGallery() {
       <span class="polaroid-open-btn">perbesar foto 🔍</span>
     `;
 
-    // Penanganan gambar gagal dimuat dengan ilustrasi SVG pastel agar halaman tidak rusak
+    // Penanganan gambar gagal dimuat dengan ilustrasi SVG pastel sesuai nomor foto
     const imgEl = figure.querySelector("img");
     if (imgEl) {
       imgEl.addEventListener("error", () => {
-        imgEl.src = createPastelPlaceholderDataURI(photo.caption, index + 1);
+        imgEl.src = createPastelPlaceholderDataURI(photo.caption, photoFileNumber);
       });
     }
 
-    const openHandler = () => openLightbox(index);
+    const openHandler = () => openLightboxBySrc(photo.src);
     figure.addEventListener("click", openHandler);
     figure.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -495,7 +612,7 @@ function createPastelPlaceholderDataURI(captionText, num) {
 
 /**
  * ============================================================================
- * LIGHTBOX MODAL UNTUK SCRAPBOOK FOTO
+ * LIGHTBOX MODAL UNTUK SELURUH 9 FOTO (foto1.jpg - foto9.jpg)
  * ============================================================================
  */
 function initLightboxModal() {
@@ -520,6 +637,11 @@ function initLightboxModal() {
   });
 }
 
+function openLightboxBySrc(targetSrc) {
+  const foundIdx = AppState.lightboxItems.findIndex((item) => item.src === targetSrc);
+  openLightbox(foundIdx >= 0 ? foundIdx : 0);
+}
+
 function openLightbox(index) {
   const modal = document.getElementById("lightbox-modal");
   if (!modal) return;
@@ -539,15 +661,15 @@ function closeLightbox() {
 }
 
 function stepLightbox(direction) {
-  const total = BIRTHDAY_CONFIG.photos.length;
+  const total = AppState.lightboxItems.length;
   if (!total) return;
   AppState.currentLightboxIndex = (AppState.currentLightboxIndex + direction + total) % total;
   updateLightboxContent();
 }
 
 function updateLightboxContent() {
-  const photo = BIRTHDAY_CONFIG.photos[AppState.currentLightboxIndex];
-  if (!photo) return;
+  const item = AppState.lightboxItems[AppState.currentLightboxIndex];
+  if (!item) return;
 
   const imgEl = document.getElementById("lightbox-image");
   const captionEl = document.getElementById("lightbox-caption");
@@ -555,22 +677,22 @@ function updateLightboxContent() {
   const counterEl = document.getElementById("lightbox-counter");
 
   if (imgEl) {
-    imgEl.src = photo.src;
-    imgEl.alt = photo.alt;
+    imgEl.src = item.src;
+    imgEl.alt = item.alt;
     imgEl.onerror = () => {
-      imgEl.src = createPastelPlaceholderDataURI(photo.caption, AppState.currentLightboxIndex + 1);
+      imgEl.src = createPastelPlaceholderDataURI(item.caption, item.fileNumber || AppState.currentLightboxIndex + 1);
     };
   }
-  if (captionEl) captionEl.textContent = photo.caption;
-  if (noteEl) noteEl.textContent = photo.note || "";
+  if (captionEl) captionEl.textContent = item.caption;
+  if (noteEl) noteEl.textContent = item.note || "";
   if (counterEl) {
-    counterEl.textContent = `${AppState.currentLightboxIndex + 1} / ${BIRTHDAY_CONFIG.photos.length}`;
+    counterEl.textContent = `${AppState.currentLightboxIndex + 1} / ${AppState.lightboxItems.length}`;
   }
 }
 
 /**
  * ============================================================================
- * 7. RENDER TIMELINE KENANGAN INTERAKTIF
+ * 7. RENDER TIMELINE KENANGAN INTERAKTIF (foto6.jpg - foto9.jpg)
  * ============================================================================
  */
 function renderTimeline() {
@@ -580,6 +702,9 @@ function renderTimeline() {
   listEl.innerHTML = "";
 
   BIRTHDAY_CONFIG.timeline.forEach((item, index) => {
+    // Urutan nomor file di timeline dimulai dari foto6.jpg (index + 6)
+    const timelinePhotoNumber = index + 6;
+
     const article = document.createElement("article");
     article.className = "timeline-item reveal-on-scroll";
 
@@ -589,7 +714,7 @@ function renderTimeline() {
         <span class="timeline-date">${escapeHtml(item.date)}</span>
         <h3>${escapeHtml(item.title)}</h3>
         <p>${escapeHtml(item.description)}</p>
-        <div class="timeline-thumb">
+        <div class="timeline-thumb" style="cursor: pointer;" title="Klik untuk memperbesar foto">
           <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" />
         </div>
       </div>
@@ -598,9 +723,12 @@ function renderTimeline() {
     const imgEl = article.querySelector("img");
     if (imgEl) {
       imgEl.addEventListener("error", () => {
-        imgEl.src = createPastelPlaceholderDataURI(item.title, (index % 3) + 1);
+        imgEl.src = createPastelPlaceholderDataURI(item.title, timelinePhotoNumber);
       });
     }
+
+    const thumbEl = article.querySelector(".timeline-thumb");
+    thumbEl?.addEventListener("click", () => openLightboxBySrc(item.image));
 
     listEl.appendChild(article);
   });
@@ -803,15 +931,27 @@ function initSurpriseInteractions() {
   secretClose?.addEventListener("click", closeSecretModal);
   secretBackdrop?.addEventListener("click", closeSecretModal);
 
-  // 4. Karakter Maskot Melambai
+  // 4. Karakter Maskot Melambai + Tombol "✕" (Close/Hide Bubble Chat)
   const mascotBtn = document.getElementById("mascot-btn");
   const mascotBubble = document.getElementById("mascot-speech-bubble");
+  const mascotSpeechText = document.getElementById("mascot-speech-text");
+  const mascotBubbleClose = document.getElementById("mascot-bubble-close");
   let mascotLineIdx = 0;
 
+  // Tombol "✕" untuk menyembunyikan bubble chat agar tidak mengganggu layar
+  mascotBubbleClose?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mascotBubble?.classList.add("is-hidden");
+  });
+
+  // Klik ikon beruang untuk menampilkan kembali bubble chat & mengganti kalimat sapaan
   mascotBtn?.addEventListener("click", (e) => {
     if (mascotBubble) {
       mascotBubble.classList.remove("is-hidden");
-      mascotBubble.textContent = BIRTHDAY_CONFIG.mascotLines[mascotLineIdx % BIRTHDAY_CONFIG.mascotLines.length];
+    }
+    if (mascotSpeechText) {
+      mascotSpeechText.textContent =
+        BIRTHDAY_CONFIG.mascotLines[mascotLineIdx % BIRTHDAY_CONFIG.mascotLines.length];
       mascotLineIdx += 1;
     }
     spawnFloatingHeart(e.clientX || 60, e.clientY || window.innerHeight - 60);

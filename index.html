@@ -88,6 +88,7 @@
 
   <!-- =========================================================
        NAVIGASI MELAYANG & STATUS PESAN RAHASIA
+       (Menu "Investigasi" telah dihapus sesuai permintaan)
        ========================================================= -->
   <header class="top-floating-nav" id="top-nav">
     <div class="nav-inner glass-pill">
@@ -97,7 +98,6 @@
       </a>
 
       <nav class="nav-links" aria-label="Navigasi bagian halaman">
-        <a href="#investigation-section">Investigasi</a>
         <a href="#scrapbook-section">Scrapbook</a>
         <a href="#timeline-section">Kenangan</a>
         <a href="#wish-section">Permohonan</a>
@@ -165,40 +165,67 @@
           hari ini, semesta merayakan dirimu.
         </p>
 
-        <!-- Kue Ulang Tahun Animasi di Hero -->
-        <div class="hero-cake-showcase" role="img" aria-label="Kue ulang tahun bertingkat pastel dengan lilin menyala">
-          <div class="cake-glow-aura"></div>
-          <div class="cake-illustration">
-            <div class="cake-candles-row">
-              <div class="candle">
-                <span class="flame"></span>
-                <span class="wick"></span>
+        <!-- PANGGUNG UTAMA HERO: BINGKAI FOTO KIRI + KUE ULANG TAHUN + BINGKAI FOTO KANAN -->
+        <div class="hero-centerpiece">
+          <!-- Bingkai Foto Lucu Sebelah Kiri Kue -->
+          <figure class="hero-side-frame frame-left">
+            <div class="hero-frame-tape" aria-hidden="true"></div>
+            <span class="hero-frame-sticker" id="hero-sticker-left" aria-hidden="true">🎀</span>
+            <div class="hero-frame-photo">
+              <img id="hero-photo-left" src="images/foto1.jpg" alt="Foto ulang tahun di sebelah kiri kue" />
+            </div>
+            <figcaption class="hero-frame-caption" id="hero-caption-left">
+              the birthday star ✨
+            </figcaption>
+          </figure>
+
+          <!-- Kue Ulang Tahun Animasi di Tengah -->
+          <div class="hero-cake-showcase" role="img" aria-label="Kue ulang tahun bertingkat pastel dengan lilin menyala">
+            <div class="cake-glow-aura"></div>
+            <div class="cake-illustration">
+              <div class="cake-candles-row">
+                <div class="candle">
+                  <span class="flame"></span>
+                  <span class="wick"></span>
+                </div>
+                <div class="candle candle-center">
+                  <span class="flame"></span>
+                  <span class="wick"></span>
+                </div>
+                <div class="candle">
+                  <span class="flame"></span>
+                  <span class="wick"></span>
+                </div>
               </div>
-              <div class="candle candle-center">
-                <span class="flame"></span>
-                <span class="wick"></span>
+              <div class="cake-top-cherries">
+                <span>🍒</span><span>🎀</span><span>🍒</span>
               </div>
-              <div class="candle">
-                <span class="flame"></span>
-                <span class="wick"></span>
+              <div class="cake-tier tier-top">
+                <div class="frosting-drip"></div>
               </div>
+              <div class="cake-tier tier-bottom">
+                <div class="frosting-drip"></div>
+                <div class="cake-ribbon-trim">♡ ✦ ♡ ✦ ♡</div>
+              </div>
+              <div class="cake-plate"></div>
             </div>
-            <div class="cake-top-cherries">
-              <span>🍒</span><span>🎀</span><span>🍒</span>
-            </div>
-            <div class="cake-tier tier-top">
-              <div class="frosting-drip"></div>
-            </div>
-            <div class="cake-tier tier-bottom">
-              <div class="frosting-drip"></div>
-              <div class="cake-ribbon-trim">♡ ✦ ♡ ✦ ♡</div>
-            </div>
-            <div class="cake-plate"></div>
           </div>
+
+          <!-- Bingkai Foto Lucu Sebelah Kanan Kue -->
+          <figure class="hero-side-frame frame-right">
+            <div class="hero-frame-tape" aria-hidden="true"></div>
+            <span class="hero-frame-sticker" id="hero-sticker-right" aria-hidden="true">🍒</span>
+            <div class="hero-frame-photo">
+              <img id="hero-photo-right" src="images/foto2.jpg" alt="Foto ulang tahun di sebelah kanan kue" />
+            </div>
+            <figcaption class="hero-frame-caption" id="hero-caption-right">
+              selalu manis ♡
+            </figcaption>
+          </figure>
         </div>
 
         <div class="hero-cta-group">
-          <a href="#investigation-section" class="btn-secondary-kawaii">
+          <a href="#scrapbook-section" class="btn-secondary-kawaii">
             mulai jelajahi ceritamu ↓
           </a>
           <button type="button" id="hero-confetti-btn" class="btn-ghost-kawaii">
@@ -208,37 +235,7 @@
       </div>
     </section>
 
-    <!-- 5. BIRTHDAY INVESTIGATION — ROASTING LUCU -->
-    <section id="investigation-section" class="section-block investigation-section">
-      <div class="container">
-        <div class="section-header reveal-on-scroll">
-          <span class="section-eyebrow">BERKAS KASUS #B-DAY-01</span>
-          <h2 class="section-title" id="investigation-title">🔎 investigasi ulang tahun</h2>
-          <p class="section-desc">
-            Hasil audit independen dari semesta terhadap tingkat kelucuan, drama, dan kedewasaanmu tahun ini. (Klik kartu untuk melihat catatan detektif!)
-          </p>
-        </div>
-
-        <div class="dossier-board reveal-on-scroll">
-          <div class="dossier-stamp" aria-hidden="true">TERVERIFIKASI GEMAS ★</div>
-          <div class="washi-tape tape-top-left" aria-hidden="true"></div>
-          <div class="washi-tape tape-top-right" aria-hidden="true"></div>
-
-          <!-- Grid Statistik Investigasi (Dirender dari Konfigurasi JS) -->
-          <div id="investigation-grid" class="investigation-grid" role="list"></div>
-
-          <div class="dossier-footer">
-            <p id="investigation-joke-banner" class="investigation-joke-banner" aria-live="polite">
-              💡 Tip: Ketuk atau arahkan kursor ke salah satu lencana di atas untuk membuka bukti rahasia!
-            </p>
-            <!-- Hati Rahasia #2 -->
-            <button type="button" class="secret-heart-trigger" data-secret-id="1" aria-label="Temukan pesan rahasia kedua">
-              ♡ catatan kaki rahasia
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- 6. SCRAPBOOK FOTO INTERAKTIF -->
     <section id="scrapbook-section" class="section-block scrapbook-section">
@@ -349,43 +346,120 @@
     </section>
 
     <!-- 9. SURAT YANG MENYENTUH HATI -->
-    <section id="letter-section" class="section-block letter-section">
-      <div class="container">
-        <article class="love-letter-paper reveal-on-scroll" aria-labelledby="letter-heading">
-          <div class="washi-tape tape-center-top" aria-hidden="true"></div>
+  <section id="letter-section" class="section-block letter-section">
+    <div class="container">
+      <article class="love-letter-paper reveal-on-scroll" aria-labelledby="letter-heading">
+        <div class="washi-tape tape-center-top" aria-hidden="true"></div>
 
-          <!-- Segel Lilin Hati -->
-          <div class="wax-seal-emblem" aria-hidden="true">
-            <span class="wax-heart">♡</span>
+        <!-- Segel Lilin Hati -->
+        <div class="wax-seal-emblem" aria-hidden="true">
+          <span class="wax-heart">♡</span>
+        </div>
+
+        <header class="letter-header">
+          <span class="letter-date-stamp" id="letter-date-stamp">Edisi Hari Spesialmu</span>
+
+          <!-- Pembungkus Judul + Kucing Kiri & Kanan -->
+          <div class="letter-title-wrapper">
+            <!-- Kucing Kiri (Nengok Gemas) -->
+            <div class="letter-cat cat-left" aria-hidden="true">
+              <svg viewBox="0 0 100 85" class="cat-svg">
+                <!-- Telinga Kiri & Kanan -->
+                <polygon points="18,36 28,10 46,26" fill="#ffe5ec" stroke="#4a2030" stroke-width="3" stroke-linejoin="round"/>
+                <polygon points="24,30 30,16 40,26" fill="#ffb3cb"/>
+                <polygon points="82,36 72,10 54,26" fill="#ffe5ec" stroke="#4a2030" stroke-width="3" stroke-linejoin="round"/>
+                <polygon points="76,30 70,16 60,26" fill="#ffb3cb"/>
+                <!-- Kepala Kucing -->
+                <ellipse cx="50" cy="46" rx="35" ry="29" fill="#fffdf9" stroke="#4a2030" stroke-width="3.2"/>
+                <!-- Pipi Blush Merona -->
+                <ellipse cx="29" cy="51" rx="6.5" ry="4" fill="#ffacc5" opacity="0.7"/>
+                <ellipse cx="71" cy="51" rx="6.5" ry="4" fill="#ffacc5" opacity="0.7"/>
+                <!-- Mata Bulat Menatap Pembaca -->
+                <g class="cat-eyes">
+                  <ellipse cx="36" cy="42" rx="5.5" ry="6.5" fill="#4a2030"/>
+                  <circle cx="34.5" cy="40" r="2.2" fill="#ffffff"/>
+                  <circle cx="38" cy="44.5" r="1.1" fill="#ffffff"/>
+                  <ellipse cx="64" cy="42" rx="5.5" ry="6.5" fill="#4a2030"/>
+                  <circle cx="62.5" cy="40" r="2.2" fill="#ffffff"/>
+                  <circle cx="66" cy="44.5" r="1.1" fill="#ffffff"/>
+                </g>
+                <!-- Hidung & Mulut Kucing :3 -->
+                <path d="M48,47 Q50,49 52,47" stroke="#ff7aa2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M46,50 Q50,53 50,51 Q50,53 54,50" stroke="#4a2030" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Kumis Gemas -->
+                <path d="M22,46 L10,44 M22,50 L8,51" stroke="#4a2030" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M78,46 L90,44 M78,50 L92,51" stroke="#4a2030" stroke-width="1.8" stroke-linecap="round"/>
+                <!-- Kaki Mungil Nangkring di Bawah -->
+                <ellipse cx="35" cy="73" rx="8" ry="6" fill="#fffdf9" stroke="#4a2030" stroke-width="2.5"/>
+                <ellipse cx="65" cy="73" rx="8" ry="6" fill="#fffdf9" stroke="#4a2030" stroke-width="2.5"/>
+              </svg>
+            </div>
+
+            <!-- Judul Surat Kamu -->
+            <h2 id="letter-heading" class="letter-title">oke, bercanda dulu... 💌</h2>
+
+            <!-- Kucing Kanan (Ada Pita Pink Kecil) -->
+            <div class="letter-cat cat-right" aria-hidden="true">
+              <svg viewBox="0 0 100 85" class="cat-svg">
+                <!-- Telinga Kiri & Kanan -->
+                <polygon points="18,36 28,10 46,26" fill="#ffe5ec" stroke="#4a2030" stroke-width="3" stroke-linejoin="round"/>
+                <polygon points="24,30 30,16 40,26" fill="#ffb3cb"/>
+                <polygon points="82,36 72,10 54,26" fill="#ffe5ec" stroke="#4a2030" stroke-width="3" stroke-linejoin="round"/>
+                <polygon points="76,30 70,16 60,26" fill="#ffb3cb"/>
+                <!-- Pita Pink di Telinga Kanan -->
+                <path d="M74,24 Q78,20 83,23 Q80,27 75,26 Z" fill="#ff5d8f"/>
+                <path d="M74,27 Q78,31 83,28 Q80,24 75,25 Z" fill="#ff5d8f"/>
+                <circle cx="75" cy="25.5" r="2.5" fill="#fff0f5" stroke="#d83169" stroke-width="1"/>
+                <!-- Kepala Kucing -->
+                <ellipse cx="50" cy="46" rx="35" ry="29" fill="#fffdf9" stroke="#4a2030" stroke-width="3.2"/>
+                <!-- Pipi Blush Merona -->
+                <ellipse cx="29" cy="51" rx="6.5" ry="4" fill="#ffacc5" opacity="0.7"/>
+                <ellipse cx="71" cy="51" rx="6.5" ry="4" fill="#ffacc5" opacity="0.7"/>
+                <!-- Mata Bulat Menatap Pembaca -->
+                <g class="cat-eyes">
+                  <ellipse cx="36" cy="42" rx="5.5" ry="6.5" fill="#4a2030"/>
+                  <circle cx="34.5" cy="40" r="2.2" fill="#ffffff"/>
+                  <circle cx="38" cy="44.5" r="1.1" fill="#ffffff"/>
+                  <ellipse cx="64" cy="42" rx="5.5" ry="6.5" fill="#4a2030"/>
+                  <circle cx="62.5" cy="40" r="2.2" fill="#ffffff"/>
+                  <circle cx="66" cy="44.5" r="1.1" fill="#ffffff"/>
+                </g>
+                <!-- Hidung & Mulut Kucing :3 -->
+                <path d="M48,47 Q50,49 52,47" stroke="#ff7aa2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M46,50 Q50,53 50,51 Q50,53 54,50" stroke="#4a2030" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Kumis Gemas -->
+                <path d="M22,46 L10,44 M22,50 L8,51" stroke="#4a2030" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M78,46 L90,44 M78,50 L92,51" stroke="#4a2030" stroke-width="1.8" stroke-linecap="round"/>
+                <!-- Kaki Mungil Nangkring di Bawah -->
+                <ellipse cx="35" cy="73" rx="8" ry="6" fill="#fffdf9" stroke="#4a2030" stroke-width="2.5"/>
+                <ellipse cx="65" cy="73" rx="8" ry="6" fill="#fffdf9" stroke="#4a2030" stroke-width="2.5"/>
+              </svg>
+            </div>
+          </div>
+        </header>
+
+        <!-- Isi Surat (Muncul baris demi baris dengan efek fade lembut) -->
+        <div id="letter-body-container" class="letter-body"></div>
+
+        <footer class="letter-footer">
+          <div class="letter-signature-block">
+            <span class="signature-label">Dengan penuh kasih &amp; doa terbaik,</span>
+            <span class="signature-name" id="letter-sender-name">[NAMA PENGIRIM / SAHABATMU] ♡</span>
           </div>
 
-          <header class="letter-header">
-            <span class="letter-date-stamp" id="letter-date-stamp">Edisi Hari Spesialmu</span>
-            <h2 id="letter-heading" class="letter-title">oke, bercanda dulu... 💌</h2>
-          </header>
-
-          <!-- Isi Surat (Muncul baris demi baris dengan efek fade lembut) -->
-          <div id="letter-body-container" class="letter-body"></div>
-
-          <footer class="letter-footer">
-            <div class="letter-signature-block">
-              <span class="signature-label">Dengan penuh kasih &amp; doa terbaik,</span>
-              <span class="signature-name" id="letter-sender-name">[NAMA PENGIRIM / SAHABATMU] ♡</span>
-            </div>
-
-            <div class="letter-footer-actions">
-              <button type="button" id="replay-letter-btn" class="btn-tiny-kawaii">
-                baca ulang animasi surat 💌
-              </button>
-              <!-- Hati Rahasia #3 -->
-              <button type="button" class="secret-heart-trigger" data-secret-id="2" aria-label="Temukan pesan rahasia ketiga">
-                ♡ P.S. rahasia
-              </button>
-            </div>
-          </footer>
-        </article>
-      </div>
-    </section>
+          <div class="letter-footer-actions">
+            <button type="button" id="replay-letter-btn" class="btn-tiny-kawaii">
+              baca ulang animasi surat 💌
+            </button>
+            <!-- Hati Rahasia #3 -->
+            <button type="button" class="secret-heart-trigger" data-secret-id="2" aria-label="Temukan pesan rahasia ketiga">
+              ♡ P.S. rahasia
+            </button>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </section>
 
     <!-- 10. ADEGAN PENUTUP (FINALE SCENE) -->
     <section id="finale-section" class="section-block finale-section">
@@ -429,11 +503,24 @@
 
   <!-- =========================================================
        KARAKTER MASKOT MELAMBAI (POJOK KIRI BAWAH)
+       Dilengkapi tombol "✕" untuk menyembunyikan bubble chat
        ========================================================= -->
   <aside class="kawaii-mascot-widget" aria-label="Karakter pendamping ulang tahun">
     <div id="mascot-speech-bubble" class="mascot-speech-bubble" role="status" aria-live="polite">
-      Selamat ulang tahun! Klik aku kapan saja ya ♡
+      <button
+        type="button"
+        id="mascot-bubble-close"
+        class="mascot-bubble-close"
+        aria-label="Sembunyikan pesan beruang"
+        title="Sembunyikan pesan"
+      >
+        ✕
+      </button>
+      <span id="mascot-speech-text">
+        Selamat ulang tahun! Klik aku kapan saja ya ♡
+      </span>
     </div>
+
     <button type="button" id="mascot-btn" class="mascot-btn" aria-label="Sapa karakter beruang pita">
       <svg class="mascot-svg" viewBox="0 0 100 100" width="64" height="64" aria-hidden="true">
         <!-- Telinga Beruang Pastel -->
